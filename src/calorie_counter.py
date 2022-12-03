@@ -13,9 +13,16 @@ def parse_calories(elves_calories: str) -> List[int]:
 
 
 def find_highest_calories_count(calories: List[int]) -> int:
-    calories_counter = 0
+    highest_count = 0
+    counter = 0
 
-    for calorie in calories:
-        calories_counter += calorie
+    for i, calorie in enumerate(calories):
+        counter += calorie
 
-    return calories_counter
+        if calorie == 0 or i == (len(calories) - 1):
+            if counter > highest_count:
+                highest_count = counter
+                counter = 0
+            continue
+
+    return highest_count
