@@ -13,19 +13,26 @@ def parse_calories(elves_calories: str) -> List[int]:
 
 
 def find_highest_calories_count(calories: List[int]) -> int:
-    highest_count = 0
+    highest_count = [0, 0, 0]
     counter = 0
 
     for i, calorie in enumerate(calories):
         counter += calorie
 
         if calorie == 0 or i == (len(calories) - 1):
-            if counter >= highest_count:
-                highest_count = counter
+            if counter >= highest_count[0]:
+                highest_count[2] = highest_count[1]
+                highest_count[1] = highest_count[0]
+                highest_count[0] = counter
+            elif counter >= highest_count[1]:
+                highest_count[2] = highest_count[1]
+                highest_count[1] = counter
+            elif counter >= highest_count[2]:
+                highest_count[2] = counter
 
             counter = 0
 
-    return highest_count
+    return sum(highest_count)
 
 
 def read_sample_file(filename) -> str:
