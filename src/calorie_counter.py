@@ -20,9 +20,9 @@ def find_highest_calories_count(calories: List[int]) -> int:
         counter += calorie
 
         if calorie == 0 or i == (len(calories) - 1):
-            if counter > highest_count:
+            if counter >= highest_count:
                 highest_count = counter
-                counter = 0
-            continue
+
+            counter = 0
 
     return highest_count

@@ -46,9 +46,17 @@ class TestCalorieCounter:
 
         assert actual == 6000
 
+    def test_highest_calorie_count_is_from_last_elf(self):
+        calories = [1000, 2000, 3000, 0, 1000, 0, 10000]
+
+        actual = find_highest_calories_count(calories)
+
+        assert actual == 10000
+
     def test_find_highest_calories_count_from_multiple_elves(self):
         calories = parse_calories(ELVES_CALORIES_SAMPLE)
 
         actual = find_highest_calories_count(calories)
 
         assert actual == 24000
+
