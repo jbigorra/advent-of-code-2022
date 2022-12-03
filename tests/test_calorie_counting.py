@@ -32,6 +32,13 @@ class TestCalorieCounter:
             10000
         ]
 
+    def test_highest_calorie_is_zero(self):
+        calories = []
+
+        actual = find_highest_calories_count(calories)
+
+        assert actual == 0
+
     def test_find_highest_calories_count_from_one_elf(self):
         calories = [1000, 2000, 3000]
 
@@ -39,12 +46,19 @@ class TestCalorieCounter:
 
         assert actual == 6000
 
-    def test_find_highest_calories_count_from_two_elves(self):
+    def test_highest_calorie_count_is_from_first_elf(self):
         calories = [1000, 2000, 3000, 0, 1000]
 
         actual = find_highest_calories_count(calories)
 
         assert actual == 6000
+
+    def test_highest_calorie_count_is_from_second_elf(self):
+        calories = [1000, 2000, 3000, 0, 1100, 0, 10000]
+
+        actual = find_highest_calories_count(calories)
+
+        assert actual == 10000
 
     def test_highest_calorie_count_is_from_last_elf(self):
         calories = [1000, 2000, 3000, 0, 1000, 0, 10000]
