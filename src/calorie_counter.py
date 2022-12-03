@@ -26,3 +26,28 @@ def find_highest_calories_count(calories: List[int]) -> int:
             counter = 0
 
     return highest_count
+
+
+def read_sample_file(filename) -> str:
+    file = open(filename, "r")
+
+    file_content = file.read()
+
+    file.close()
+
+    print(file_content)
+
+    return file_content
+
+
+def calculate_highest_calories_count():
+    file_string = read_sample_file("elves_calories.txt")
+
+    calories = parse_calories(file_string)
+
+    return find_highest_calories_count(calories)
+
+
+if __name__ == '__main__':
+    result = calculate_highest_calories_count()
+    print(result)
