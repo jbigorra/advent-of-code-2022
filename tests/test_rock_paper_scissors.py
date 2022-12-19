@@ -14,7 +14,11 @@ class TestRockPaperScissorScoring:
         assert my_score == 7
 
     def test_i_win_with_paper_over_rock(self):
-        pass
+        line = "A Y"
+
+        my_score = calculate_my_round_score(line)
+
+        assert my_score == 8
 
     def test_i_win_with_scissors_over_paper(self):
         pass

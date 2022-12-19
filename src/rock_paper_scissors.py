@@ -6,6 +6,8 @@ def calculate_my_round_score(line: str) -> int:
 
     if my_hand == "X" and their_hand == "C":
         my_score = 7
+    elif my_hand == "Y" and their_hand == "A":
+        my_score = 8
 
     return my_score
 
