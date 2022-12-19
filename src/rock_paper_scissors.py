@@ -1,10 +1,13 @@
-# Rock      A and X - 1
-# Paper     B and Y - 2
-# Scissors  c and Z - 3
-# Lose = 0, draw = 3, win = 6
-
 def calculate_my_round_score(line: str) -> int:
-    pass
+    hands = line.split(" ")
+    their_hand = hands[0]
+    my_hand = hands[1]
+    my_score = 0
+
+    if my_hand == "X" and their_hand == "C":
+        my_score = 7
+
+    return my_score
 
 
 def play_match() -> int:
