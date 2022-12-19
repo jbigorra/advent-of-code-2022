@@ -32,26 +32,26 @@ class TestNewRockPaperScissorScoring:
 
         assert my_score == 9
 
-    # def test_i_lose_with_rock_over_scissors(self):
-    #     line = "A Z"
-    #
-    #     my_score = calculate_my_round_score(line)
-    #
-    #     assert my_score == 3
-    #
-    # def test_i_lose_with_paper_over_rock(self):
-    #     line = "B X"
-    #
-    #     my_score = calculate_my_round_score(line)
-    #
-    #     assert my_score == 1
-    #
-    # def test_i_lose_with_scissors_over_paper(self):
-    #     line = "C Y"
-    #
-    #     my_score = calculate_my_round_score(line)
-    #
-    #     assert my_score == 2
+    def test_i_lose_with_rock_over_scissors(self):
+        line = "A X"
+
+        my_score = calculate_my_round_score(line)
+
+        assert my_score == 3
+
+    def test_i_lose_with_paper_over_rock(self):
+        line = "B X"
+
+        my_score = calculate_my_round_score(line)
+
+        assert my_score == 1
+
+    def test_i_lose_with_scissors_over_paper(self):
+        line = "C X"
+
+        my_score = calculate_my_round_score(line)
+
+        assert my_score == 2
     #
     # def test_i_draw_with_rock(self):
     #     line = "A X"
