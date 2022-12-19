@@ -7,27 +7,12 @@ def calculate_my_round_score(line: str) -> int:
 
     if round_result == "Z":
         my_score += 6
-        if their_hand == "C":
-            my_hand = "Rock"
-        elif their_hand == "B":
-            my_hand = "Scissor"
-        elif their_hand == "A":
-            my_hand = "Paper"
+        my_hand = _map_hand_to_win(their_hand)
     elif round_result == "X":
-        if their_hand == "C":
-            my_hand = "Paper"
-        elif their_hand == "B":
-            my_hand = "Rock"
-        elif their_hand == "A":
-            my_hand = "Scissor"
+        my_hand = _map_hand_to_lose(their_hand)
     elif round_result == "Y":
         my_score += 3
-        if their_hand == "C":
-            my_hand = "Scissor"
-        elif their_hand == "B":
-            my_hand = "Paper"
-        elif their_hand == "A":
-            my_hand = "Rock"
+        my_hand = _map_hand_to_draw(their_hand)
 
     if my_hand == "Rock":
         my_score += 1
@@ -37,6 +22,36 @@ def calculate_my_round_score(line: str) -> int:
         my_score += 3
 
     return my_score
+
+
+def _map_hand_to_draw(their_hand) -> str:
+    if their_hand == "C":
+        my_hand = "Scissor"
+    elif their_hand == "B":
+        my_hand = "Paper"
+    elif their_hand == "A":
+        my_hand = "Rock"
+    return my_hand
+
+
+def _map_hand_to_lose(their_hand) -> str:
+    if their_hand == "C":
+        my_hand = "Paper"
+    elif their_hand == "B":
+        my_hand = "Rock"
+    elif their_hand == "A":
+        my_hand = "Scissor"
+    return my_hand
+
+
+def _map_hand_to_win(their_hand) -> str:
+    if their_hand == "C":
+        my_hand = "Rock"
+    elif their_hand == "B":
+        my_hand = "Scissor"
+    elif their_hand == "A":
+        my_hand = "Paper"
+    return my_hand
 
 
 def play_match() -> int:
