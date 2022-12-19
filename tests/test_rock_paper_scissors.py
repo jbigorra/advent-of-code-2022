@@ -49,12 +49,24 @@ class TestRockPaperScissorScoring:
         assert my_score == 0
 
     def test_i_draw_with_rock(self):
-        pass
+        line = "A X"
+
+        my_score = calculate_my_round_score(line)
+
+        assert my_score == 3
 
     def test_i_draw_with_scissors(self):
-        pass
+        line = "B Y"
+
+        my_score = calculate_my_round_score(line)
+
+        assert my_score == 3
 
     def test_i_draw_with_paper(self):
-        pass
+        line = "C Z"
+
+        my_score = calculate_my_round_score(line)
+
+        assert my_score == 3
 
 
