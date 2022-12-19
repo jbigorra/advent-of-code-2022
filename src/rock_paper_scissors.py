@@ -1,27 +1,24 @@
 def calculate_my_round_score(line: str) -> int:
-    hands = line.split(" ")
-    their_hand = hands[0]
-    my_hand = hands[1]
+    round = line.split(" ")
+    their_hand = round[0]
+    round_result = round[1]
     my_score = 0
+    my_hand = ""
 
-    if (
-        (my_hand == "X" and their_hand == "C") or
-        (my_hand == "Y" and their_hand == "A") or
-        (my_hand == "Z" and their_hand == "B")
-    ):
-        my_score = 6
-    elif (
-        (my_hand == "X" and their_hand == "A") or
-        (my_hand == "Y" and their_hand == "B") or
-        (my_hand == "Z" and their_hand == "C")
-    ):
-        my_score = 3
+    if round_result == "Z":
+        my_score += 6
+        if their_hand == "C":
+            my_hand = "Rock"
+        elif their_hand == "B":
+            my_hand = "Scissor"
+        elif their_hand == "A":
+            my_hand = "Paper"
 
-    if my_hand == "X":
+    if my_hand == "Rock":
         my_score += 1
-    elif my_hand == "Y":
+    elif my_hand == "Paper":
         my_score += 2
-    elif my_hand == "Z":
+    elif my_hand == "Scissor":
         my_score += 3
 
     return my_score
