@@ -10,7 +10,11 @@ def calculate_my_round_score(line: str) -> int:
         my_score = 8
     elif my_hand == "Z" and their_hand == "B":
         my_score = 9
-    elif my_hand == "X" and their_hand == "A":
+    elif (
+        (my_hand == "X" and their_hand == "A") or
+        (my_hand == "Y" and their_hand == "B") or
+        (my_hand == "Z" and their_hand == "C")
+    ):
         my_score = 3
 
     return my_score
