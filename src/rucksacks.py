@@ -1,13 +1,25 @@
 from typing import List, Optional
 
 
-def find_repeated_item_in(rucksack: str) -> Optional[str]:
-    middle_idx = int(len(rucksack) / 2)
+def find_repeated_item_in(rucksacks: List[str]) -> Optional[str]:
+    group_1 = rucksacks[0]
+    group_2 = rucksacks[1]
+    group_3 = rucksacks[2]
 
-    for i in range(0, middle_idx):
-        for j in range(middle_idx, len(rucksack)):
-            if rucksack[i] == rucksack[j]:
-                return rucksack[i]
+    common = find_common_between_two_list(group_1, group_2)
+    result = find_common_between_two_list(common, group_3)
+
+    return result[0] if len(result) == 1 else None
+
+
+def find_common_between_two_list(group_1, group_2) -> List[str]:
+    common = []
+    for item in group_1:
+        for item_2 in group_2:
+            if item == item_2 and item not in common:
+                common.append(item)
+
+    return common
 
 
 def calculate_total_item_priorities(rucksacks: List[str]) -> int:
@@ -18,10 +30,15 @@ def calculate_total_item_priorities(rucksacks: List[str]) -> int:
                   "T": 46, "U": 47, "V": 48, "W": 49, "X": 50, "Y": 51, "Z": 52}
 
     total = 0
-    for rucksack in rucksacks:
-        repeated_item = find_repeated_item_in(rucksack)
-        if repeated_item:
-            total += priorities[repeated_item]
+    elf_group = []
+    for i, rucksack in enumerate(rucksacks):
+        elf_group.append(rucksack)
+
+        if (i + 1) % 3 == 0:
+            repeated_item = find_repeated_item_in(elf_group)
+            elf_group = []
+            if repeated_item:
+                total += priorities[repeated_item]
 
     return total
 
