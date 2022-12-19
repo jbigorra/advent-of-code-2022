@@ -52,27 +52,27 @@ class TestNewRockPaperScissorScoring:
         my_score = calculate_my_round_score(line)
 
         assert my_score == 2
-    #
-    # def test_i_draw_with_rock(self):
-    #     line = "A X"
-    #
-    #     my_score = calculate_my_round_score(line)
-    #
-    #     assert my_score == 4
-    #
-    # def test_i_draw_with_paper(self):
-    #     line = "B Y"
-    #
-    #     my_score = calculate_my_round_score(line)
-    #
-    #     assert my_score == 5
-    #
-    # def test_i_draw_with_scissors(self):
-    #     line = "C Z"
-    #
-    #     my_score = calculate_my_round_score(line)
-    #
-    #     assert my_score == 6
+
+    def test_i_draw_with_rock(self):
+        line = "A Y"
+
+        my_score = calculate_my_round_score(line)
+
+        assert my_score == 4
+
+    def test_i_draw_with_paper(self):
+        line = "B Y"
+
+        my_score = calculate_my_round_score(line)
+
+        assert my_score == 5
+
+    def test_i_draw_with_scissors(self):
+        line = "C Y"
+
+        my_score = calculate_my_round_score(line)
+
+        assert my_score == 6
 
 
 # class TestRockPaperScissorScoring:

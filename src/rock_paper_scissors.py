@@ -20,6 +20,14 @@ def calculate_my_round_score(line: str) -> int:
             my_hand = "Rock"
         elif their_hand == "A":
             my_hand = "Scissor"
+    elif round_result == "Y":
+        my_score += 3
+        if their_hand == "C":
+            my_hand = "Scissor"
+        elif their_hand == "B":
+            my_hand = "Paper"
+        elif their_hand == "A":
+            my_hand = "Rock"
 
     if my_hand == "Rock":
         my_score += 1
