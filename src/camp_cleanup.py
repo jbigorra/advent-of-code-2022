@@ -23,3 +23,12 @@ def find_overlapping_pairs_from(pairs):
             overlaps += 1
 
     return overlaps
+
+
+def parse_one_elf(string: str):
+    try:
+        pair = tuple(map(lambda n: int(n), string.split("-")))
+    except Exception:
+        raise Exception(f"Invalid elf pair. Wrong format: {string}")
+
+    return pair

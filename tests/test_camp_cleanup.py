@@ -2,17 +2,17 @@ from typing import Tuple
 
 import pytest
 
-from src.camp_cleanup import find_overlapping_pairs_from, exist_within_range, pair_exist_within_range
+from src.camp_cleanup import find_overlapping_pairs_from, exist_within_range, pair_exist_within_range, parse_elf_pairs, \
+    parse_one_elf
 
+FILE_SAMPLE = """2-4,6-8
+2-3,4-5
+5-7,7-9
+2-8,3-7
+6-6,4-6
+2-6,4-8
+"""
 
-# """
-# 2-4,6-8
-# 2-3,4-5
-# 5-7,7-9
-# 2-8,3-7
-# 6-6,4-6
-# 2-6,4-8
-# """
 
 class TestNumberExistWithinRange:
     def test_number_exist_within_range(self):
@@ -129,3 +129,24 @@ class TestFindOverlappingPairs:
         result = find_overlapping_pairs_from(pairs)
 
         assert result == 3
+
+
+class TestParseElfPairs:
+    def test_parse_one_elf(self):
+        string = "2-4"
+
+        pairs = parse_one_elf(string)
+
+        assert pairs == (2, 4)
+
+    @pytest.mark.parametrize("string", [
+        "",
+        "invalid-string",
+        "invalid",
+        "invalid-"
+        "1-",
+        "-2"
+    ])
+    def test_parse_one_elf_raises_exception(self, string: str):
+        with pytest.raises(Exception,  match=f"Invalid elf pair. Wrong format: {string}"):
+            parse_one_elf(string)
