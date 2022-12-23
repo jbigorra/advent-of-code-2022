@@ -38,7 +38,7 @@ class TestPairExistWithinARange:
         (9, 12),
     ])
     def test_pair_does_not_exist_within_range_given_first_number_is_out_of_range(
-        self, pair_out_of_range: Tuple[int, int]
+            self, pair_out_of_range: Tuple[int, int]
     ):
         range_ = (2, 8)
         result = pair_exist_within_range(range_=range_, pair=pair_out_of_range)
@@ -115,3 +115,17 @@ class TestFindOverlappingPairs:
         result = find_overlapping_pairs_from(pairs)
 
         assert result == 2
+
+    def test_multiple_pairs_left_and_right_contained_within_each_other(self):
+        pairs = (
+            ((3, 4), (3, 5)),  # contained
+            ((2, 4), (4, 5)),
+            ((2, 3), (4, 5)),
+            ((5, 7), (7, 9)),
+            ((3, 7), (2, 8)),  # contained
+            ((6, 6), (4, 6)),  # contained
+        )
+
+        result = find_overlapping_pairs_from(pairs)
+
+        assert result == 3
