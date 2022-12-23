@@ -46,15 +46,15 @@ class TestPairExistWithinARange:
         assert result is False
 
     def test_pair_exist_within_range(self):
-        range = (2, 8)
+        range_ = (2, 8)
         pair2 = (3, 7)
 
-        result = pair_exist_within_range(range_=range, pair=pair2)
+        result = pair_exist_within_range(range_=range_, pair=pair2)
 
         assert result is True
 
 
-class TestCampCleanup:
+class TestFindOverlappingPairs:
     def test_no_overlapping_pairs_found(self):
         pairs = (
             ((2, 4), (6, 8)),
@@ -66,7 +66,7 @@ class TestCampCleanup:
 
         assert result == 0
 
-    def test_find_one_overlapping_pair(self):
+    def test_one_right_pair_is_contained_within_left_pair(self):
         pairs = (
             ((2, 4), (6, 8)),
             ((2, 3), (4, 5)),
@@ -78,5 +78,16 @@ class TestCampCleanup:
 
         assert result == 1
 
-    def test_find_two_overlapping_pairs(self):
-        assert True is False
+    def test_two_right_pair_are_contained_within_a_left_pair(self):
+        pairs = (
+            ((2, 4), (6, 8)),
+            ((2, 3), (4, 5)),
+            ((5, 7), (7, 9)),
+            ((2, 8), (3, 7)),
+            ((4, 6), (6, 6)),
+        )
+
+        result = find_overlapping_pairs_from(pairs)
+
+        assert result == 2
+

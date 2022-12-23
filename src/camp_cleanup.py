@@ -11,12 +11,12 @@ def pair_exist_within_range(range_: Tuple[int, int], pair: Tuple[int, int]) -> b
 
     return False
 
-def find_overlapping_pairs_from(pairs):
-    for set_of_pairs in pairs:
-        pair_1 = set_of_pairs[0]
-        pair_2 = set_of_pairs[1]
-        print(pair_1, pair_2)
-        if pair_1[0] < pair_2[0] < pair_1[1]:
-            return 1
 
-    return 0
+def find_overlapping_pairs_from(pairs):
+    overlaps = 0
+    for [left_pair, right_pair] in pairs:
+        print(left_pair, right_pair)
+        if pair_exist_within_range(range_=left_pair, pair=right_pair):
+            overlaps += 1
+
+    return overlaps
