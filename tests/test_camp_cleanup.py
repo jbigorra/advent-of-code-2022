@@ -78,7 +78,7 @@ class TestFindOverlappingPairs:
 
         assert result == 1
 
-    def test_two_right_pair_are_contained_within_a_left_pair(self):
+    def test_two_right_pairs_are_contained_within_two_left_pairs(self):
         pairs = (
             ((2, 4), (6, 8)),
             ((2, 3), (4, 5)),
@@ -91,3 +91,27 @@ class TestFindOverlappingPairs:
 
         assert result == 2
 
+    def test_one_left_pair_is_contained_within_right_pair(self):
+        pairs = (
+            ((2, 4), (6, 8)),
+            ((2, 3), (4, 5)),
+            ((5, 7), (7, 9)),
+            ((3, 7), (2, 8)),
+        )
+
+        result = find_overlapping_pairs_from(pairs)
+
+        assert result == 1
+
+    def test_two_left_pairs_are_contained_within_two_right_pairs(self):
+        pairs = (
+            ((2, 4), (6, 8)),
+            ((2, 3), (4, 5)),
+            ((5, 7), (7, 9)),
+            ((3, 7), (2, 8)),
+            ((6, 6), (4, 6)),
+        )
+
+        result = find_overlapping_pairs_from(pairs)
+
+        assert result == 2
