@@ -3,7 +3,7 @@ from typing import Tuple
 import pytest
 
 from src.camp_cleanup import find_overlapping_pairs_from, exist_within_range, pair_exist_within_range, parse_elf_pairs, \
-    parse_one_elf
+    parse_one_elf, parse_one_pair_of_elves
 
 FILE_SAMPLE = """2-4,6-8
 2-3,4-5
@@ -148,5 +148,27 @@ class TestParseElfPairs:
         "-2"
     ])
     def test_parse_one_elf_raises_exception(self, string: str):
-        with pytest.raises(Exception,  match=f"Invalid elf pair. Wrong format: {string}"):
+        with pytest.raises(Exception,  match=f"Wrong format"):
             parse_one_elf(string)
+
+
+class TestParseTwoElves:
+    def test_parse_two_elves(self):
+        string = "2-4,6-8"
+
+        pair_of_elves = parse_one_pair_of_elves(string)
+
+        assert pair_of_elves == ((2, 4), (6, 8))
+
+    @pytest.mark.parametrize("string", [
+        "",
+        ",",
+        "2-4",
+        "2-4,",
+        ",6-8",
+        "1,",
+        ",2"
+    ])
+    def test_parse_one_elf_raises_exception(self, string: str):
+        with pytest.raises(Exception, match=f"Wrong format"):
+            parse_one_pair_of_elves(string)
