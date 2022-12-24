@@ -56,3 +56,28 @@ def parse_elf_pairs(file_string: str):
             lines
         )
     )
+
+
+def read_sample_file(filename) -> str:
+    file = open(filename, "r")
+
+    file_content = file.read()
+
+    file.close()
+
+    print(file_content)
+
+    return file_content
+
+
+def run_camp_cleanup():
+    file_string = read_sample_file("camp_cleanup_input.txt")
+
+    elf_pairs = parse_elf_pairs(file_string)
+
+    return find_overlapping_pairs_from(elf_pairs)
+
+
+if __name__ == '__main__':
+    result = run_camp_cleanup()
+    print(result)
