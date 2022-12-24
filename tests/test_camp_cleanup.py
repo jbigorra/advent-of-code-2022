@@ -5,14 +5,6 @@ import pytest
 from src.camp_cleanup import find_overlapping_pairs_from, exist_within_range, pair_exist_within_range, parse_elf_pairs, \
     parse_one_elf, parse_one_pair_of_elves
 
-FILE_SAMPLE = """2-4,6-8
-2-3,4-5
-5-7,7-9
-2-8,3-7
-6-6,4-6
-2-6,4-8
-"""
-
 
 class TestNumberExistWithinRange:
     def test_number_exist_within_range(self):
@@ -131,7 +123,7 @@ class TestFindOverlappingPairs:
         assert result == 3
 
 
-class TestParseElfPairs:
+class TestParseOneElfPair:
     def test_parse_one_elf(self):
         string = "2-4"
 
@@ -152,7 +144,7 @@ class TestParseElfPairs:
             parse_one_elf(string)
 
 
-class TestParseTwoElves:
+class TestParseTwoElvesPairs:
     def test_parse_two_elves(self):
         string = "2-4,6-8"
 
@@ -172,3 +164,33 @@ class TestParseTwoElves:
     def test_parse_one_elf_raises_exception(self, string: str):
         with pytest.raises(Exception, match=f"Wrong format"):
             parse_one_pair_of_elves(string)
+
+
+FILE_SAMPLE = """2-4,6-8
+2-3,4-5
+5-7,7-9
+2-8,3-7
+6-6,4-6
+2-6,4-8"""
+
+
+class TestParseListOfElvesPairs:
+    def test_parse_elf_pairs(self):
+
+        result = parse_elf_pairs(FILE_SAMPLE)
+
+        expected = (
+            ((2, 4), (6, 8)),
+            ((2, 3), (4, 5)),
+            ((5, 7), (7, 9)),
+            ((2, 8), (3, 7)),
+            ((6, 6), (4, 6)),
+            ((2, 6), (4, 8)),
+        )
+
+        assert result == expected
+
+    def test_raise_exception(self):
+        file_input = ""
+        with pytest.raises(Exception, match="Wrong input file format"):
+            parse_elf_pairs("")

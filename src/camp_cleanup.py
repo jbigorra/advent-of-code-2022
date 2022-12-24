@@ -31,7 +31,7 @@ def parse_one_elf(string: str) -> tuple[int, ...]:
     return pair
 
 
-def parse_one_pair_of_elves(string: str) -> tuple[tuple[int, int], ...]:
+def parse_one_pair_of_elves(string: str) -> tuple[tuple[int, ...], ...]:
     pair_of_elves_str = string.split(",")
 
     if len(pair_of_elves_str) <= 1:
@@ -42,3 +42,17 @@ def parse_one_pair_of_elves(string: str) -> tuple[tuple[int, int], ...]:
     )
 
     return one_pair_of_elves
+
+
+def parse_elf_pairs(file_string: str):
+    if not file_string:
+        raise Exception("Wrong input file format")
+
+    lines = file_string.split("\n")
+
+    return tuple(
+        map(
+            lambda line: parse_one_pair_of_elves(line),
+            lines
+        )
+    )
