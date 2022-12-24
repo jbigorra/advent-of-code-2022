@@ -3,7 +3,7 @@ def exist_within_range(range_: tuple[int, int], number: int) -> bool:
 
 
 def pair_exist_within_range(range_: tuple[int, int], pair: tuple[int, int]) -> bool:
-    if exist_within_range(range_=range_, number=pair[0]) and exist_within_range(range_=range_, number=pair[1]):
+    if exist_within_range(range_=range_, number=pair[0]) or exist_within_range(range_=range_, number=pair[1]):
         return True
 
     return False
@@ -12,7 +12,6 @@ def pair_exist_within_range(range_: tuple[int, int], pair: tuple[int, int]) -> b
 def find_overlapping_pairs_from(pairs):
     overlaps = 0
     for [left_pair, right_pair] in pairs:
-        print(left_pair, right_pair)
         if (
             pair_exist_within_range(range_=left_pair, pair=right_pair) or
             pair_exist_within_range(range_=right_pair, pair=left_pair)
@@ -64,8 +63,6 @@ def read_sample_file(filename) -> str:
     file_content = file.read()
 
     file.close()
-
-    print(file_content)
 
     return file_content
 

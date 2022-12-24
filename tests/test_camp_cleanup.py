@@ -1,5 +1,3 @@
-from typing import Tuple
-
 import pytest
 
 from src.camp_cleanup import find_overlapping_pairs_from, exist_within_range, pair_exist_within_range, parse_elf_pairs, \
@@ -22,26 +20,28 @@ class TestNumberExistWithinRange:
         assert result is False
 
 
-class TestPairExistWithinARange:
+class TestPairsOverlaps:
     @pytest.mark.parametrize("pair_out_of_range", [
         (0, 1),
-        (1, 2),
-        (8, 12),
         (9, 12),
     ])
     def test_pair_does_not_exist_within_range_given_first_number_is_out_of_range(
-            self, pair_out_of_range: Tuple[int, int]
+            self, pair_out_of_range: tuple[int, int]
     ):
         range_ = (2, 8)
         result = pair_exist_within_range(range_=range_, pair=pair_out_of_range)
 
         assert result is False
 
-    def test_pair_exist_within_range(self):
+    @pytest.mark.parametrize("pair", [
+        ((1, 2)),
+        ((8, 9)),
+        ((3, 7))
+    ])
+    def test_pair_exist_within_range(self, pair: tuple[int, int]):
         range_ = (2, 8)
-        pair2 = (3, 7)
 
-        result = pair_exist_within_range(range_=range_, pair=pair2)
+        result = pair_exist_within_range(range_=range_, pair=pair)
 
         assert result is True
 
@@ -166,18 +166,17 @@ class TestParseTwoElvesPairs:
             parse_one_pair_of_elves(string)
 
 
-FILE_SAMPLE = """2-4,6-8
-2-3,4-5
-5-7,7-9
-2-8,3-7
-6-6,4-6
-2-6,4-8"""
-
-
 class TestParseListOfElvesPairs:
+    FILE_SAMPLE = """2-4,6-8
+    2-3,4-5
+    5-7,7-9
+    2-8,3-7
+    6-6,4-6
+    2-6,4-8"""
+
     def test_parse_elf_pairs(self):
 
-        result = parse_elf_pairs(FILE_SAMPLE)
+        result = parse_elf_pairs(self.FILE_SAMPLE)
 
         expected = (
             ((2, 4), (6, 8)),
