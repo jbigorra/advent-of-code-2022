@@ -8,8 +8,8 @@ class Stack:
     def pop(self) -> str:
         return self._items.pop()
 
-    def append(self, item: str) -> None:
-        self._items.append(item)
+    def extend(self, item: list[str]) -> None:
+        self._items.extend(item)
 
     def last(self) -> any:
         return self._items[len(self._items) - 1]
@@ -29,9 +29,12 @@ class CargoCrane:
         return "".join([stack.last() for stack in stacks])
 
     def _move(self, number: int, _from: int, _to: int) -> None:
+        items = []
         for i in range(0, number):
             item = self._stacks[_from - 1].pop()
-            self._stacks[_to - 1].append(item)
+            items.insert(0, item)
+
+        self._stacks[_to - 1].extend(items)
 
 
 def parse_stacks_from(lines: list[str]) -> list[Stack]:
